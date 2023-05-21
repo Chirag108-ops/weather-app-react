@@ -1,5 +1,3 @@
-Certainly! Here's an updated version of the `README.md` file for your Weather App project:
-
 # Weather App
 
 A simple weather application built with React.
