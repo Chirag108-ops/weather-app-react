@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useContext, useEffect} from 'react';
 import Search from './components/header/Search';
 // import Form from './components/header/Form';
 import Card from './components/body/layout/Card';
@@ -6,17 +6,11 @@ import Card from './components/body/layout/Card';
 import axios from 'axios';
 // import icons
 import { ImSpinner8 } from 'react-icons/im';
+import { AppContext } from './context/AppContext';
 const API_KEY = 'aab3cc45e41cd16c4547d1b24065d080';
 
-const WeatherApp = (props) => {
-  const [data, setData] = useState(null);
-  const [location, setLocation] = useState('Delhi');
-  const [loading, setLoading] = useState(false);
-  const [errorMsg, setErrorMsg] = useState('');
-
-  const handleOnSearchChange = (searchData) => {
-    setLocation(searchData.city)
-  }
+const WeatherApp = () => {
+  const {data, setData,location, setLoading, setErrorMsg, errorMsg} = useContext(AppContext)
   // Fetch data from the API
   useEffect(() => {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=metric`;
@@ -31,6 +25,7 @@ const WeatherApp = (props) => {
         setLoading(false);
         setErrorMsg(err);
       });
+      console.log(location)
   }, [location]);
 
   // Clear error message after a timeout
@@ -52,11 +47,10 @@ const WeatherApp = (props) => {
       </div>
     );
   }
-
   return (
     <div className="w-full h-screen bg-gradientBg bg-no-repeat bg-cover bg-center flex flex-col items-center justify-center px-4 lg:px-0">
-      <Search onSearchChange={handleOnSearchChange} errorMsg={errorMsg}/>
-      <Card loading={loading} data={data} errorMsg={errorMsg}></Card>
+      <Search/>
+      <Card></Card>
     </div>
   );
 };

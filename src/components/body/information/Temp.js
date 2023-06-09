@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TbTemperatureCelsius } from 'react-icons/tb';
+import { AppContext } from '../../../context/AppContext';
 
-function Temp(props) {
-  let data = props.data;
+function Temp() {
+  const {data} = useContext(AppContext)
   
   return (
     <div className="flex justify-center items-center">

@@ -1,8 +1,6 @@
 import React from 'react';
 
 function Parameter(props) {
-  let data = props.data;
-  
   return (
     <div className="flex justify-between">
       {/* Parameter 1 */}

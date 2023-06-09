@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   IoMdSunny,
   IoMdRainy,
@@ -7,10 +7,11 @@ import {
   IoMdThunderstorm,
 } from 'react-icons/io';
 import { BsCloudHaze2Fill, BsCloudDrizzleFill } from 'react-icons/bs';
+import { AppContext } from '../../../context/AppContext';
 
 function Icon(props) {
   let icon;
-  let data = props.data;
+  const {data} = useContext(AppContext)
 
   // Determine the appropriate weather icon based on the weather condition
   switch (data.weather[0].main) {

@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Loader from './Loader';
 import Item from './Item';
 import Error from '../../header/Error';
+import { AppContext } from '../../../context/AppContext';
 
-function Card(props) {
-  const { data, loading, errorMsg } = props;
+function Card() {
+  const { data, loading, errorMsg } = useContext(AppContext);
 
   return (
     <>

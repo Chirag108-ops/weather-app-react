@@ -4,9 +4,11 @@ import { BsEye, BsWater, BsThermometer, BsWind } from 'react-icons/bs';
 import Info from '../information/Info';
 import Parameter from '../information/Parameter';
 import { TbTemperatureCelsius } from 'react-icons/tb';
+import { useContext } from 'react';
+import { AppContext } from '../../../context/AppContext';
 
-function Item(props) {
-  let data = props.data;
+function Item() {
+  const {data} = useContext(AppContext)
   const temp = parseInt(data.main.feels_like);
 
   return (

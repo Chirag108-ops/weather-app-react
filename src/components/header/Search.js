@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
+import { AppContext } from '../../context/AppContext';
 import { url, options } from './Api';
 
-function Search({ onSearchChange, errorMsg }) {
+function Search() {
+  const {handleOnSearchChange} = useContext(AppContext)
   const [search, setSearch] = useState(null);
   const loadOptions = async (inputValue) => {
     try {
@@ -35,7 +37,7 @@ function Search({ onSearchChange, errorMsg }) {
   }
   const handleOnChange = (searchData) => {
     setSearch(searchData);
-    onSearchChange(searchData);
+    handleOnSearchChange(searchData);
   };
 
   return (

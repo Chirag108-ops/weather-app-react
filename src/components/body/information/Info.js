@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../../context/AppContext';
 
-function Info(props) {
-  let data = props.data;
+function Info() {
+  const {data} = useContext(AppContext)
   const date = new Date();
 
   return (
