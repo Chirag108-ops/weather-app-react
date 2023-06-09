@@ -1,8 +1,12 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../../../context/AppContext';
-
+import React from 'react';
+import { useSelector } from 'react-redux';
 function Info() {
-  const {data} = useContext(AppContext)
+  const {data} = useSelector((state) => (state.info))
+  if(Object.keys(data).length === 0) {
+    return (
+      <div>No data Available</div>
+    )
+  }
   const date = new Date();
 
   return (

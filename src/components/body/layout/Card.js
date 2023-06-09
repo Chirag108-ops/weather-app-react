@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Loader from './Loader';
 import Item from './Item';
 import Error from '../../header/Error';
-import { AppContext } from '../../../context/AppContext';
+import { useSelector } from 'react-redux';
 
 function Card() {
-  const { data, loading, errorMsg } = useContext(AppContext);
+  const { data, loading, errorMsg } = useSelector((state) => state.info)
 
   return (
     <>

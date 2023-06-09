@@ -1,10 +1,11 @@
-import { useContext, useState } from 'react';
+import {useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { AppContext } from '../../context/AppContext';
+import { addLocation } from '../../Redux/Slices/AppSlice';
 import { url, options } from './Api';
 
 function Search() {
-  const {handleOnSearchChange} = useContext(AppContext)
+  const dispatch = useDispatch()
   const [search, setSearch] = useState(null);
   const loadOptions = async (inputValue) => {
     try {
@@ -37,7 +38,7 @@ function Search() {
   }
   const handleOnChange = (searchData) => {
     setSearch(searchData);
-    handleOnSearchChange(searchData);
+    dispatch(addLocation(searchData.city))
   };
 
   return (

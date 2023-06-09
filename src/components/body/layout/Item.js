@@ -4,26 +4,28 @@ import { BsEye, BsWater, BsThermometer, BsWind } from 'react-icons/bs';
 import Info from '../information/Info';
 import Parameter from '../information/Parameter';
 import { TbTemperatureCelsius } from 'react-icons/tb';
-import { useContext } from 'react';
-import { AppContext } from '../../../context/AppContext';
+import { useSelector } from 'react-redux';
 
 function Item() {
-  const {data} = useContext(AppContext)
-  const temp = parseInt(data.main.feels_like);
-
+  const {data} = useSelector((state) => (state.info))
+  if(Object.keys(data).length === 0) {
+    return (
+      <div>No data Available</div>
+    )
+  }
+  const temp = data.main.feels_like
   return (
     <div>
       <div className="flex items-center gap-x-5">
-        <Icon data={data} />
-        <Info data={data} />
+        <Icon/>
+        <Info/>
       </div>
       <div className="my-20">
-        <Temp data={data} />
+        <Temp/>
         <div className="capitalize text-center">{data.weather[0].description}</div>
       </div>
       <div className="max-w-[378px] mx-auto flex flex-col gap-y-6">
         <Parameter
-          data={data}
           param1="Visibility"
           val1={`${data.visibility / 1000} km`}
           icon1={<BsEye />}
@@ -32,7 +34,6 @@ function Item() {
           icon2={<BsThermometer />}
         />
         <Parameter
-          data={data}
           param1="Humidity"
           val1={`${data.main.humidity} %`}
           icon1={<BsWater />}

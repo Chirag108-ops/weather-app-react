@@ -1,9 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { TbTemperatureCelsius } from 'react-icons/tb';
-import { AppContext } from '../../../context/AppContext';
-
+import { useSelector } from 'react-redux';
 function Temp() {
-  const {data} = useContext(AppContext)
+  const {data} = useSelector((state) => (state.info))
+  if(Object.keys(data).length === 0) {
+    return (
+      <div>No data Available</div>
+    )
+  }
   
   return (
     <div className="flex justify-center items-center">

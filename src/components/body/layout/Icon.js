@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import  React  from 'react';
 import {
   IoMdSunny,
   IoMdRainy,
@@ -7,12 +7,16 @@ import {
   IoMdThunderstorm,
 } from 'react-icons/io';
 import { BsCloudHaze2Fill, BsCloudDrizzleFill } from 'react-icons/bs';
-import { AppContext } from '../../../context/AppContext';
+import { useSelector } from 'react-redux';
 
-function Icon(props) {
+function Icon() {
   let icon;
-  const {data} = useContext(AppContext)
-
+  const {data} = useSelector((state) => (state.info))
+  if(Object.keys(data).length === 0) {
+    return (
+      <div>No data Available</div>
+    )
+  }
   // Determine the appropriate weather icon based on the weather condition
   switch (data.weather[0].main) {
     case 'Clouds':
